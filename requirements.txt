@@ -1,5 +1,5 @@
-matplotlib
-numpy
-opencv-python
-streamlit
+matplotlib==3.5.3
+numpy==1.23.5
+opencv-python-headless
+streamlit==1.22.0
 tensorflow
