@@ -64,16 +64,16 @@ if page_sel == "Segmentation sémantique":
         # Displaying the selected image.
         img_name_id = NAME_LIST.index(img_selected)  # index in the list of the selected image name.
         st.image(f"media/images/{IMG_LIST[img_name_id]}",
-                 caption=f"Image {img_selected}", width=400)
+                 caption=f"Image {img_selected}", width=500)
         # Displaying the selected mask.
         st.image(f"media/masks/{MSK_LIST[img_name_id]}",
-                 caption=f"Masque {img_selected}", width=400)
+                 caption=f"Masque {img_selected}", width=500)
         # Preparing the image for prediction.
         img_to_predict = cv2.imread(f"media/images/{IMG_LIST[img_name_id]}") / 255.0
         # Predicting the mask.
         pred_mask_colored = mask_prediction(unet_model, img_to_predict)
         # Displaying the predicted mask.
-        st.image(pred_mask_colored, caption=f"Masque prédit {img_selected}", width=400)
+        st.image(pred_mask_colored, caption=f"Masque prédit {img_selected}", width=500)
 
 ##############################################################################
 
@@ -191,7 +191,7 @@ elif page_sel == "A propos de notre modèle SOTA":
                 """)
     st.markdown("----")
     st.markdown(
-        "***[Repository GitHub du Projet 10](https://github.com/jfsubrini/ai-project-10)***")
+        "***[Repository GitHub du Notebook du Projet 10](https://github.com/jfsubrini/ai-project-10)***")
 
 ##############################################################################
 
