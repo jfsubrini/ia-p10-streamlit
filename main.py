@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-member
+# pylint: disable=no-member,line-too-long
 """
 Created by Jean-François Subrini on the 26th of May 2023.
 Creation of a dashboard for "Projet 10 : Développez une preuve de concept".
@@ -14,7 +14,8 @@ from sem_seg_utils import (
     IMG_LIST,
     MSK_LIST,
     mask_prediction,
-    unet_model
+    unet_model,
+    HRNEtOCR_model
     )
 
 
@@ -60,7 +61,7 @@ if page_sel == "Segmentation sémantique":
     submit_state = form.form_submit_button("Valider")
     if submit_state:
         st.success(f"Vous avez sélectionné l'image **{img_selected}** pour réaliser une \
-            segmentation sémantique avec notre nouveau modèle.")
+            segmentation sémantique avec le modèle U-NET puis le modèle HRNetV2 + OCR.")
         # Displaying the selected image.
         img_name_id = NAME_LIST.index(img_selected)  # index in the list of the selected image name.
         st.image(f"media/images/{IMG_LIST[img_name_id]}",
@@ -70,10 +71,14 @@ if page_sel == "Segmentation sémantique":
                  caption=f"Masque {img_selected}", width=500)
         # Preparing the image for prediction.
         img_to_predict = cv2.imread(f"media/images/{IMG_LIST[img_name_id]}") / 255.0
-        # Predicting the mask.
+        # Predicting the mask with the U-NET model.
         pred_mask_colored = mask_prediction(unet_model, img_to_predict)
-        # Displaying the predicted mask.
-        st.image(pred_mask_colored, caption=f"Masque prédit {img_selected}", width=500)
+        # Displaying the predicted mask with the U-NET model.
+        st.image(pred_mask_colored, caption=f"Masque prédit {img_selected} avec U-NET", width=500)
+        # Predicting the mask with the HRNetV2 + OCR model.
+        pred_mask_colored2 = mask_prediction(unet_model, img_to_predict)  # TODO change model
+        # Displaying the predicted mask with the HRNetV2 + OCR model.
+        st.image(pred_mask_colored2, caption=f"Masque prédit {img_selected} avec HRNetV2 + OCR", width=500)
 
 ##############################################################################
 

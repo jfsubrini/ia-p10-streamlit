@@ -38,8 +38,10 @@ MSK_LIST = ["frankfurt_000000_000294_gtFine_color.png",
             ]
 
 ### LOADING MODEL & PREDICTION FUNCTIONS ###
-# Loading the selected UNET model.
-unet_model = load_model('model_unet', compile=False)  # TODO change the model
+# Loading the U-NET model.
+unet_model = load_model('model_unet', compile=False)
+# Loading the HRNetV2 + OCR model.
+HRNEtOCR_model = load_model('model_HRNetOCR', compile=False)
 # Image size.
 IMG_HEIGHT = 192
 IMG_WIDTH = 384
