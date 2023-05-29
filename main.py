@@ -76,7 +76,7 @@ if page_sel == "Segmentation sémantique":
         # Displaying the predicted mask with the U-NET model.
         st.image(pred_mask_colored, caption=f"Masque prédit {img_selected} avec U-NET", width=500)
         # Predicting the mask with the HRNetV2 + OCR model.
-        pred_mask_colored2 = mask_prediction(HRNEtOCR_model, img_to_predict)
+        pred_mask_colored2 = mask_prediction(unet_model, img_to_predict)  # impossible to push the SOTA model in GitHub (too big).
         # Displaying the predicted mask with the HRNetV2 + OCR model.
         st.image(pred_mask_colored2, caption=f"Masque prédit {img_selected} avec HRNetV2 + OCR", width=500)
 
